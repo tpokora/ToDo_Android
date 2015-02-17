@@ -2,11 +2,11 @@ package mayon.org.todo;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,6 +15,9 @@ import java.util.Date;
 public class MainMenu extends ActionBarActivity {
 
     private TextView currentDateTextView;
+    private Button taskListButton;
+    private Button addTaskButton;
+    private Button exitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,20 @@ public class MainMenu extends ActionBarActivity {
         setContentView(R.layout.activity_main_menu);
         currentDateTextView = (TextView) findViewById(R.id.currentDate);
         currentDateTextView.setText(getCurrentDate());
+
+        taskListButton = (Button) findViewById(R.id.taskListButton);
+
+        addTaskButton = (Button) findViewById(R.id.addTaskButton);
+
+        exitButton = (Button) findViewById(R.id.exitButton);
+
+        // exit appiaction
+        exitButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     /*
