@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ToDo</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Layouts strings -->
+    <string name="closestTaskString">Closest Task</string>
+
+    <!-- Buttons strings -->
+    <string name="taskListButtonString">Task List</string>
+    <string name="addTaskButtonString">Add Task</string>
+    <string name="exitButtonString">Exit</string>
+
+</resources>

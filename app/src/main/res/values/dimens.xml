@@ -1,0 +1,17 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">0dp</dimen>
+    <dimen name="activity_vertical_margin">0dp</dimen>
+
+    <!-- Elements margins and paddings -->
+    <dimen name="taskPadding">10dp</dimen>
+    <dimen name="currentDateTextViewPadding">20dp</dimen>
+    <dimen name="closestTaskBoxPadding">20dp</dimen>
+    <dimen name="buttonPadding">20dp</dimen>
+
+    <!-- Font sizes -->
+    <dimen name="currentDateFontSize">20dp</dimen>
+    <dimen name="closestTaskHeaderFontSize">20dp</dimen>
+    <dimen name="taskFontSize">18dp</dimen>
+    <dimen name="taskDateFontSize">14dp</dimen>
+</resources>
