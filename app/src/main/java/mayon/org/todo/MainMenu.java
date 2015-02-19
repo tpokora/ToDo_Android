@@ -1,5 +1,6 @@
 package mayon.org.todo;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,9 +12,6 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-import mayon.org.todo.topic.Task;
-
 
 public class MainMenu extends ActionBarActivity {
 
@@ -35,9 +33,22 @@ public class MainMenu extends ActionBarActivity {
         closestTaskDateTextView = (TextView) findViewById(R.id.closestTaskDate);
         setFakeClosestTopic();
 
+
         taskListButton = (Button) findViewById(R.id.taskListButton);
+        taskListButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToTaskListActivity();
+            }
+        });
 
         addTaskButton = (Button) findViewById(R.id.addTaskButton);
+        addTaskButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAddTaskActivity();
+            }
+        });
 
         exitButton = (Button) findViewById(R.id.exitButton);
 
@@ -74,7 +85,7 @@ public class MainMenu extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public String getCurrentDate() {
+    private String getCurrentDate() {
         Date currentDate = new Date();
         String currentDateString = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
         return currentDateString;
@@ -87,5 +98,15 @@ public class MainMenu extends ActionBarActivity {
         c.add(Calendar.DATE, 5);
         closestTaskTopicTextView.setText("Fake Topic");
         closestTaskDateTextView.setText(sdf.format(c.getTime()));
+    }
+
+    public void goToTaskListActivity() {
+        Intent i = new Intent(this, TaskList.class);
+        startActivity(i);
+    }
+
+    public void goToAddTaskActivity() {
+        Intent i = new Intent(this, AddTask.class);
+        startActivity(i);
     }
 }

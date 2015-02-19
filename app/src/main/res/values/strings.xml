@@ -5,6 +5,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="title_activity_task_list">Task list</string>
+    <string name="title_activity_add_task">Add task</string>
+
     <!-- Layouts strings -->
     <string name="closestTaskString">Closest Task</string>
 
@@ -12,5 +15,6 @@
     <string name="taskListButtonString">Task List</string>
     <string name="addTaskButtonString">Add Task</string>
     <string name="exitButtonString">Exit</string>
+
 
 </resources>
