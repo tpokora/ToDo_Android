@@ -12,6 +12,12 @@ public class Task {
 
     public Task() {}
 
+    public Task(String topic, String comment, Date date) {
+        this.topic = topic;
+        this.comment = comment;
+        this.date = date;
+    }
+
     public String getTopic() {
         return topic;
     }

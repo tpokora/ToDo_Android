@@ -9,9 +9,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
+
 import java.util.Calendar;
 import java.util.Date;
+
+import mayon.org.todo.topic.Task;
+import mayon.org.todo.util.DateFormater;
+import mayon.org.todo.util.FakeData;
 
 public class MainMenu extends ActionBarActivity {
 
@@ -31,8 +35,13 @@ public class MainMenu extends ActionBarActivity {
 
         closestTaskTopicTextView = (TextView) findViewById(R.id.closestTaskTopic);
         closestTaskDateTextView = (TextView) findViewById(R.id.closestTaskDate);
-        setFakeClosestTopic();
 
+        /*
+            Fake closest topic
+         */
+        Task fakeTask = FakeData.fakeClosestTopic();
+        closestTaskTopicTextView.setText(fakeTask.getTopic());
+        closestTaskDateTextView.setText(DateFormater.getFormatedDate(fakeTask.getDate()));
 
         taskListButton = (Button) findViewById(R.id.taskListButton);
         taskListButton.setOnClickListener(new OnClickListener() {
@@ -86,18 +95,9 @@ public class MainMenu extends ActionBarActivity {
     }
 
     private String getCurrentDate() {
-        Date currentDate = new Date();
-        String currentDateString = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
-        return currentDateString;
-    }
-
-    public void setFakeClosestTopic() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar c = Calendar.getInstance();
-        c.setTime(new Date());
-        c.add(Calendar.DATE, 5);
-        closestTaskTopicTextView.setText("Fake Topic");
-        closestTaskDateTextView.setText(sdf.format(c.getTime()));
+        //Date currentDate = new Date();
+        //String currentDateString = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
+        return DateFormater.getFormatedDate(new Date());
     }
 
     public void goToTaskListActivity() {
