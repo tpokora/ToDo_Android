@@ -16,18 +16,22 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/taskFontSize</item>
     </style>
+
     <style name="closestTaskDate" parent="widthHeight">
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/taskDateFontSize</item>
     </style>
+
     <style name="closestTaskHeader" parent="widthHeight">
         <item name="android:gravity">center</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textSize">@dimen/closestTaskHeaderFontSize</item>
     </style>
+
     <style name="taskLayout" parent="widthHeight">
         <item name="android:padding">@dimen/taskPadding</item>
     </style>
+
     <style name="closestTaskLayout" parent="taskLayout">
         <item name="android:layout_marginBottom">60dp</item>
     </style>
@@ -38,6 +42,19 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <!-- Add Task styles -->
+    <style name="addTaskLabelStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">0.25</item>
+    </style>
+
+    <style name="addTaskEditTextStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">0.75</item>
+    </style>
+
     <!-- Other elements styles -->
     <style name="currentDateStyle" parent="widthHeight">s
         <item name="android:padding">@dimen/currentDateTextViewPadding</item>
@@ -45,4 +62,7 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="addTaskTopic" parent="currentDateStyle">
+        <item name="android:textAllCaps">true</item>
+    </style>
 </resources>

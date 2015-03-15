@@ -16,6 +16,11 @@
     <string name="addTaskButtonString">Add Task</string>
     <string name="exitButtonString">Exit</string>
     <string name="mainManuButtonString">Main Menu</string>
+    <string name="datePickButtonString">Choose</string>
+
+    <!-- Labels strings -->
+    <string name="addTaskTopicLabelString">Task</string>
+    <string name="addTaskDateLabelString">Date</string>
 
 
 </resources>
