@@ -6,16 +6,26 @@ import java.util.Date;
  * Created by Tomek on 2015-02-19.
  */
 public class Task {
+    private long id;
     private String topic;
     private String comment;
     private Date date;
 
     public Task() {}
 
-    public Task(String topic, String comment, Date date) {
+    public Task(int id, String topic, String comment, Date date) {
+        this.id = id;
         this.topic = topic;
         this.comment = comment;
         this.date = date;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTopic() {

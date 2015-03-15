@@ -95,8 +95,6 @@ public class MainMenu extends ActionBarActivity {
     }
 
     private String getCurrentDate() {
-        //Date currentDate = new Date();
-        //String currentDateString = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
         return DateFormater.getFormatedDate(new Date());
     }
 

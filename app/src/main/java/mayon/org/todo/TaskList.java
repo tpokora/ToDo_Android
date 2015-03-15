@@ -3,6 +3,7 @@ package mayon.org.todo;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,9 +13,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import mayon.org.todo.storage.Database;
 import mayon.org.todo.topic.Task;
+import mayon.org.todo.util.DateFormater;
 import mayon.org.todo.util.FakeData;
-
 
 public class TaskList extends ActionBarActivity {
 
@@ -45,8 +47,11 @@ public class TaskList extends ActionBarActivity {
             }
         });
 
+        Database db = new Database(this);
+        FakeData.addFakeDataToDatabase(db);
+
         listView = (ListView) findViewById(R.id.taskListView);
-        taskList = FakeData.createFakeTaskList();
+        taskList = populateList();
         adapter = new TaskListViewAdapter(this, taskList);
         listView.setAdapter(adapter);
     }
@@ -71,6 +76,16 @@ public class TaskList extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public ArrayList<Task> populateList() {
+        Database db = new Database(this);
+        taskList = new ArrayList<Task>();
+        for (Task task : db.getAllTasks()) {
+            taskList.add(task);
+            Log.d("task: ", task.getDate().toString());
+        }
+        return taskList;
     }
 
     public void goToMainMenuActivity() {
