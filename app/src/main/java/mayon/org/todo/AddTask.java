@@ -168,13 +168,22 @@ public class AddTask extends ActionBarActivity {
                 public void onDateSet(DatePicker view, int selectedYear,
                                       int selectedMonth, int selectedDay) {
                     year = selectedYear;
-                    month = selectedMonth + 1;
+                    month = selectedMonth;
                     day = selectedDay;
 
                     addTaskDateEditText.setText(new StringBuilder().append(day)
-                        .append("-").append(month).append("-").append(year).append(""));
+                        .append("-").append(correctMonth(month)).append("-").append(year).append(""));
                 }
             };
 
+    private String correctMonth(int month) {
+        String resultMonth = "";
+        if (++month < 10) {
+            resultMonth = "0" + String.valueOf(month);
+        } else {
+            resultMonth = String.valueOf(month);
+        }
 
+        return resultMonth;
+    }
 }
