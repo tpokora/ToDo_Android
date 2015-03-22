@@ -20,5 +20,9 @@
         android:id="@+id/taskListView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/deleteAllTaskButton"
+        android:text="@string/deleteAllButton"
+        style="@style/buttonStyle" />
 
 </LinearLayout>

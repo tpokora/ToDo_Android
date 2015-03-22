@@ -1,5 +1,6 @@
 package mayon.org.todo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -15,8 +16,6 @@ import java.util.ArrayList;
 
 import mayon.org.todo.storage.Database;
 import mayon.org.todo.topic.Task;
-import mayon.org.todo.util.DateFormater;
-import mayon.org.todo.util.FakeData;
 
 public class TaskList extends ActionBarActivity {
 
@@ -25,14 +24,23 @@ public class TaskList extends ActionBarActivity {
     private Button addTaskButton;
     private TaskListViewAdapter adapter;
     private ListView listView;
+    private Button deleteAllTaskButton;
+    private Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
 
-        mainMenuButton = (Button) findViewById(R.id.mainMenuButton);
         addTaskButton = (Button) findViewById((R.id.addTaskButton));
+        addTaskButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAddTaskActivity();
+            }
+        });
+
+        mainMenuButton = (Button) findViewById(R.id.mainMenuButton);
 
         mainMenuButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -47,13 +55,19 @@ public class TaskList extends ActionBarActivity {
             }
         });
 
-        Database db = new Database(this);
-        FakeData.addFakeDataToDatabase(db);
+        db = new Database(this);
 
         listView = (ListView) findViewById(R.id.taskListView);
-        taskList = populateList();
-        adapter = new TaskListViewAdapter(this, taskList);
-        listView.setAdapter(adapter);
+        setTaskList(this);
+
+        deleteAllTaskButton = (Button) findViewById(R.id.deleteAllTaskButton);
+        deleteAllTaskButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.clearAll();
+                setTaskList(getParent());
+            }
+        });
     }
 
     @Override
@@ -79,13 +93,19 @@ public class TaskList extends ActionBarActivity {
     }
 
     public ArrayList<Task> populateList() {
-        Database db = new Database(this);
+        db = new Database(this);
         taskList = new ArrayList<Task>();
         for (Task task : db.getAllTasks()) {
             taskList.add(task);
             Log.d("task: ", task.getDate().toString());
         }
         return taskList;
+    }
+
+    public void setTaskList(Activity activity) {
+        taskList = populateList();
+        adapter = new TaskListViewAdapter(activity, taskList);
+        listView.setAdapter(adapter);
     }
 
     public void goToMainMenuActivity() {

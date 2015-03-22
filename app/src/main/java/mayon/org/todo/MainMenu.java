@@ -9,13 +9,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-
-import java.util.Calendar;
-import java.util.Date;
-
+import mayon.org.todo.storage.Database;
 import mayon.org.todo.topic.Task;
-import mayon.org.todo.util.DateFormater;
-import mayon.org.todo.util.FakeData;
+import mayon.org.todo.util.DateUtility;
 
 public class MainMenu extends ActionBarActivity {
 
@@ -31,17 +27,11 @@ public class MainMenu extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         currentDateTextView = (TextView) findViewById(R.id.currentDate);
-        currentDateTextView.setText(getCurrentDate());
+        currentDateTextView.setText(DateUtility.getCurrentDateString());
 
         closestTaskTopicTextView = (TextView) findViewById(R.id.closestTaskTopic);
         closestTaskDateTextView = (TextView) findViewById(R.id.closestTaskDate);
-
-        /*
-            Fake closest topic
-         */
-        Task fakeTask = FakeData.fakeClosestTopic();
-        closestTaskTopicTextView.setText(fakeTask.getTopic());
-        closestTaskDateTextView.setText(DateFormater.getFormatedDate(fakeTask.getDate()));
+        setClosestTask();
 
         taskListButton = (Button) findViewById(R.id.taskListButton);
         taskListButton.setOnClickListener(new OnClickListener() {
@@ -94,16 +84,28 @@ public class MainMenu extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private String getCurrentDate() {
-        return DateFormater.getFormatedDate(new Date());
+    private void setClosestTask() {
+        Task closestTask = closestTask();
+        if (closestTask != null) {
+            closestTaskTopicTextView.setText(closestTask.getTopic());
+            closestTaskDateTextView.setText(DateUtility.getFormatedDate(closestTask.getDate()));
+        } else {
+            closestTaskTopicTextView.setText("No tasks on the list");
+            closestTaskDateTextView.setText("");
+        }
     }
 
-    public void goToTaskListActivity() {
+    private Task closestTask() {
+        Database db = new Database(this);
+        return db.getClosestTaskFromDB();
+    }
+
+    private void goToTaskListActivity() {
         Intent i = new Intent(this, TaskList.class);
         startActivity(i);
     }
 
-    public void goToAddTaskActivity() {
+    private void goToAddTaskActivity() {
         Intent i = new Intent(this, AddTask.class);
         startActivity(i);
     }

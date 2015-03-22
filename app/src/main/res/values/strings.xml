@@ -17,6 +17,7 @@
     <string name="exitButtonString">Exit</string>
     <string name="mainManuButtonString">Main Menu</string>
     <string name="datePickButtonString">Choose</string>
+    <string name="deleteAllButton">Delete</string>
 
     <!-- Labels strings -->
     <string name="addTaskTopicLabelString">Task</string>

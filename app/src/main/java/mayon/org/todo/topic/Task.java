@@ -8,15 +8,18 @@ import java.util.Date;
 public class Task {
     private long id;
     private String topic;
-    private String comment;
     private Date date;
 
     public Task() {}
 
-    public Task(int id, String topic, String comment, Date date) {
+    public Task(int id, String topic, Date date) {
         this.id = id;
         this.topic = topic;
-        this.comment = comment;
+        this.date = date;
+    }
+
+    public Task(String topic, Date date) {
+        this.topic = topic;
         this.date = date;
     }
 
@@ -34,14 +37,6 @@ public class Task {
 
     public void setTopic(String topic) {
         this.topic = topic;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 
     public Date getDate() {

@@ -8,10 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import mayon.org.todo.topic.Task;
-import mayon.org.todo.util.DateFormater;
+import mayon.org.todo.util.DateUtility;
 
 /**
  * Created by Tomek on 2015-02-22.
@@ -64,7 +63,7 @@ public class TaskListViewAdapter extends BaseAdapter {
 
         final Task task = list.get(position);
         viewHolder.topic.setText(task.getTopic());
-        viewHolder.date.setText(DateFormater.getFormatedDate(task.getDate()));
+        viewHolder.date.setText(DateUtility.getFormatedDate(task.getDate()));
         return convertView;
     }
 }

@@ -36,6 +36,10 @@
         <item name="android:layout_marginBottom">60dp</item>
     </style>
 
+    <style name="addTaskRowStyle">
+        <item name="android:padding">20dp</item>
+    </style>
+
     <!-- Buttons style -->
     <style name="buttonStyle" parent="widthHeight">
         <item name="android:padding">@dimen/buttonPadding</item>
@@ -46,13 +50,13 @@
     <style name="addTaskLabelStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">0.25</item>
+        <item name="android:layout_weight">0.30</item>
     </style>
 
     <style name="addTaskEditTextStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">0.75</item>
+        <item name="android:layout_weight">0.70</item>
     </style>
 
     <!-- Other elements styles -->

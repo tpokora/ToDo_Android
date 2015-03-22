@@ -6,12 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import mayon.org.todo.topic.Task;
-import mayon.org.todo.util.DateFormater;
+import mayon.org.todo.util.DateUtility;
 
 /**
  * Created by Tomek on 2015-02-22.
@@ -47,7 +46,7 @@ public class Database extends SQLiteOpenHelper {
             Task task = new Task();
             task.setId(cursor.getLong(0));
             task.setTopic(cursor.getString(1));
-            task.setDate(DateFormater.stringToDate(cursor.getString(2)));
+            task.setDate(DateUtility.stringToDate(cursor.getString(2)));
             allTasks.add(task);
         }
         return allTasks;
@@ -57,8 +56,8 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("topic", task.getTopic());
-        values.put("date", DateFormater.getFormatedDate(task.getDate()));
-        Log.d("addTask date",  DateFormater.getFormatedDate(task.getDate()));
+        values.put("date", DateUtility.getFormatedDate(task.getDate()));
+        Log.d("addTask date",  DateUtility.getFormatedDate(task.getDate()));
         db.insertOrThrow("tasks", null, values);
     }
 
@@ -71,5 +70,21 @@ public class Database extends SQLiteOpenHelper {
     public void clearAll() {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("delete from tasks");
+    }
+
+    public Task getClosestTaskFromDB() {
+        Task closestTask = null;
+        ArrayList<Task> allTasks = getAllTasks();
+        if (allTasks != null) {
+            for (Task task : allTasks) {
+                if (closestTask == null) {
+                    closestTask = task;
+                }
+                if (task.getDate().before(closestTask.getDate())) {
+                    closestTask = task;
+                }
+            }
+        }
+        return closestTask;
     }
 }
