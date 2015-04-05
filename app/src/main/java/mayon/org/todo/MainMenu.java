@@ -1,6 +1,7 @@
 package mayon.org.todo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import mayon.org.todo.storage.Database;
 import mayon.org.todo.topic.Task;
+import mayon.org.todo.util.ColorUtility;
 import mayon.org.todo.util.DateUtility;
 
 public class MainMenu extends ActionBarActivity {
@@ -89,6 +91,7 @@ public class MainMenu extends ActionBarActivity {
         if (closestTask != null) {
             closestTaskTopicTextView.setText(closestTask.getTopic());
             closestTaskDateTextView.setText(DateUtility.getFormatedDate(closestTask.getDate()));
+            setClosestTaskDateColor();
         } else {
             closestTaskTopicTextView.setText("No tasks on the list");
             closestTaskDateTextView.setText("");
@@ -108,5 +111,10 @@ public class MainMenu extends ActionBarActivity {
     private void goToAddTaskActivity() {
         Intent i = new Intent(this, AddTask.class);
         startActivity(i);
+    }
+
+    private void setClosestTaskDateColor() {
+        ColorUtility color = new ColorUtility();
+        closestTaskDateTextView.setTextColor(color.setColorAccordingToDate(closestTask().getDate()));
     }
 }

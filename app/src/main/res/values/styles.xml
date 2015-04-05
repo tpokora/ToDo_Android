@@ -5,30 +5,36 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="layoutBlackBackground">
+        <item name="android:background">#000000</item>
+    </style>
+
     <!-- Generic styles -->
-    <style name="widthHeight">
+    <style name="basicStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">#000000</item>
     </style>
 
     <!-- Layouts style -->
-    <style name="closestTaskTopic" parent="widthHeight">
+    <style name="closestTaskTopic" parent="basicStyle">
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/taskFontSize</item>
     </style>
 
-    <style name="closestTaskDate" parent="widthHeight">
+    <style name="closestTaskDate" parent="basicStyle">
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/taskDateFontSize</item>
     </style>
 
-    <style name="closestTaskHeader" parent="widthHeight">
+    <style name="closestTaskHeader" parent="basicStyle">
         <item name="android:gravity">center</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textSize">@dimen/closestTaskHeaderFontSize</item>
     </style>
 
-    <style name="taskLayout" parent="widthHeight">
+    <style name="taskLayout" parent="basicStyle">
         <item name="android:padding">@dimen/taskPadding</item>
     </style>
 
@@ -41,26 +47,36 @@
     </style>
 
     <!-- Buttons style -->
-    <style name="buttonStyle" parent="widthHeight">
+    <style name="buttonStyle" parent="basicStyle">
         <item name="android:padding">@dimen/buttonPadding</item>
         <item name="android:textAllCaps">true</item>
+        <item name="android:background">@drawable/button_background</item>
     </style>
 
     <!-- Add Task styles -->
-    <style name="addTaskLabelStyle">
+    <style name="addTaskBasicStyle">
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="addTaskLabelStyle" parent="addTaskBasicStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">0.30</item>
     </style>
 
-    <style name="addTaskEditTextStyle">
+    <style name="addTaskEditTextStyle" parent="addTaskBasicStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">0.70</item>
     </style>
 
+    <!-- Task List styles -->
+    <style name="taskListStyle">
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
+    </style>
+
     <!-- Other elements styles -->
-    <style name="currentDateStyle" parent="widthHeight">s
+    <style name="currentDateStyle" parent="basicStyle">s
         <item name="android:padding">@dimen/currentDateTextViewPadding</item>
         <item name="android:textSize">@dimen/currentDateFontSize</item>
         <item name="android:gravity">center</item>
