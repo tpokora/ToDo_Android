@@ -1,16 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/taskListLayout"
-    android:orientation="vertical" android:layout_width="fill_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/taskListRowTopic"
-        android:text="Topic"
-        style="@style/taskLayout" />
-    <TextView
-        android:id="@+id/taskListRowDate"
-        android:text="Date"
-        style="@style/taskLayout"  />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/taskListRowTopic"
+            style="@style/taskLayout"
+            android:text="Topic"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" />
+
+        <TextView
+            android:id="@+id/taskListRowDate"
+            style="@style/taskLayout"
+            android:text="Date"
+            android:layout_height="fill_parent"
+            android:layout_width="wrap_content" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/deleteTaskButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteTaskButtonStringButton"
+            android:layout_centerInParent="true"
+            style="@style/taskDeleteButtonStyle" />
+    </RelativeLayout>
+
 
 </LinearLayout>

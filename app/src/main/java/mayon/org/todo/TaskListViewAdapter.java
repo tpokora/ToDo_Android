@@ -1,15 +1,20 @@
 package mayon.org.todo;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import mayon.org.todo.storage.Database;
 import mayon.org.todo.topic.Task;
+import mayon.org.todo.util.ColorUtility;
 import mayon.org.todo.util.DateUtility;
 
 /**
@@ -18,12 +23,16 @@ import mayon.org.todo.util.DateUtility;
 public class TaskListViewAdapter extends BaseAdapter {
 
     private ArrayList<Task> list;
-    private Activity activity;
+    private TaskList activity;
+    private ColorUtility colorUtil;
+    private Database database;
 
     public TaskListViewAdapter(Activity activity, ArrayList<Task> list) {
         super();
         this.list = list;
-        this.activity = activity;
+        this.activity = (TaskList) activity;
+        colorUtil = new ColorUtility();
+        database = new Database(activity);
     }
 
     @Override
@@ -44,6 +53,7 @@ public class TaskListViewAdapter extends BaseAdapter {
     private class ViewHolder {
         TextView topic;
         TextView date;
+        Button deleteTaskButton;
     }
 
     @Override
@@ -56,6 +66,7 @@ public class TaskListViewAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.topic = (TextView) convertView.findViewById(R.id.taskListRowTopic);
             viewHolder.date = (TextView) convertView.findViewById(R.id.taskListRowDate);
+            viewHolder.deleteTaskButton = (Button) convertView.findViewById(R.id.deleteTaskButton);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -64,6 +75,18 @@ public class TaskListViewAdapter extends BaseAdapter {
         final Task task = list.get(position);
         viewHolder.topic.setText(task.getTopic());
         viewHolder.date.setText(DateUtility.getFormatedDate(task.getDate()));
+        viewHolder.date.setTextColor(colorUtil.setColorAccordingToDate(task.getDate()));
+        viewHolder.deleteTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteTaskListener(task.getId());
+            }
+        });
         return convertView;
+    }
+
+    public void deleteTaskListener(long taskId) {
+        database.deleteTask(taskId);
+        activity.setTaskList(activity);
     }
 }

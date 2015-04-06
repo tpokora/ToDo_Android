@@ -73,10 +73,21 @@
     <style name="taskListStyle">
         <item name="android:layout_marginTop">30dp</item>
         <item name="android:layout_marginBottom">30dp</item>
+        <item name="android:divider">#ff878787</item>
+        <item name="android:dividerHeight">1px</item>
+    </style>
+
+    <style name="taskDeleteButtonStyle">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">30dp</item>
     </style>
 
     <!-- Other elements styles -->
-    <style name="currentDateStyle" parent="basicStyle">s
+    <style name="currentDateStyle" parent="basicStyle">
         <item name="android:padding">@dimen/currentDateTextViewPadding</item>
         <item name="android:textSize">@dimen/currentDateFontSize</item>
         <item name="android:gravity">center</item>

@@ -8,23 +8,36 @@
     tools:context="mayon.org.todo.TaskList"
     android:background="#000000">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/mainMenuButton"
+            android:text="@string/mainManuButtonString"
+            style="@style/buttonStyle"
+            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/deleteAllTaskButton"
+            android:text="@string/deleteAllButtonString"
+            style="@style/buttonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/addTaskButton"
         android:text="@string/addTaskButtonString"
-        style="@style/buttonStyle"/>
-    <Button
-        android:id="@+id/mainMenuButton"
-        android:text="@string/mainManuButtonString"
-        style="@style/buttonStyle"/>
-
+        style="@style/buttonStyle" />
     <ListView
         android:id="@+id/taskListView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         style="@style/taskListStyle"/>
-    <Button
-        android:id="@+id/deleteAllTaskButton"
-        android:text="@string/deleteAllButton"
-        style="@style/buttonStyle" />
+
 
 </LinearLayout>
