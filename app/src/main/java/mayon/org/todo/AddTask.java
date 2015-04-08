@@ -119,6 +119,7 @@ public class AddTask extends ActionBarActivity {
     private void goToTaskListActivity() {
         Intent i = new Intent(this, TaskList.class);
         startActivity(i);
+        finish();
     }
 
     /*

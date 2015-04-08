@@ -106,11 +106,13 @@ public class MainMenu extends ActionBarActivity {
     private void goToTaskListActivity() {
         Intent i = new Intent(this, TaskList.class);
         startActivity(i);
+        finish();
     }
 
     private void goToAddTaskActivity() {
         Intent i = new Intent(this, AddTask.class);
         startActivity(i);
+        finish();
     }
 
     private void setClosestTaskDateColor() {

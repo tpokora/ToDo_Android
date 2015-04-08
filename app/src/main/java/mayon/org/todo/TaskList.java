@@ -126,10 +126,12 @@ public class TaskList extends ActionBarActivity {
     public void goToMainMenuActivity() {
         Intent i = new Intent(this, MainMenu.class);
         startActivity(i);
+        finish();
     }
 
     public void goToAddTaskActivity() {
         Intent i = new Intent(this, AddTask.class);
         startActivity(i);
+        finish();
     }
 }
