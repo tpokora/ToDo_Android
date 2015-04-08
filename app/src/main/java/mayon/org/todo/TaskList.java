@@ -92,6 +92,13 @@ public class TaskList extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void setTaskList(Activity activity) {
+        taskList = populateList();
+        taskList = sortList(taskList);
+        adapter = new TaskListViewAdapter(activity, taskList);
+        listView.setAdapter(adapter);
+    }
+
     public ArrayList<Task> populateList() {
         db = new Database(this);
         taskList = new ArrayList<Task>();
@@ -102,10 +109,18 @@ public class TaskList extends ActionBarActivity {
         return taskList;
     }
 
-    public void setTaskList(Activity activity) {
-        taskList = populateList();
-        adapter = new TaskListViewAdapter(activity, taskList);
-        listView.setAdapter(adapter);
+    public ArrayList<Task> sortList(ArrayList<Task> unsortedList) {
+        ArrayList<Task> sortedList = new ArrayList<Task>();
+        for (int i = 0; i < unsortedList.size() - 1; i++) {
+            if (unsortedList.get(i).getDate().compareTo(unsortedList.get(i + 1).getDate()) == 1) {
+                Task task1 = unsortedList.get(i);
+                Task task2 = unsortedList.get(i + 1);
+
+                unsortedList.set(i, task2);
+                unsortedList.set(i + 1, task1);
+            }
+        }
+        return unsortedList;
     }
 
     public void goToMainMenuActivity() {
